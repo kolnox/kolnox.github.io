@@ -34,6 +34,10 @@ nav a {
     color: var(--accent);
     text-decoration: none;
 }
+nav .tagline {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
 main {
     max-width: 960px;
     margin: 32px auto 64px;
