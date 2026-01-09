@@ -14,10 +14,10 @@ function PostTemplates() {
                 </nav>
             </header>
 
-            <main>
+            <main className="post-main">
                 <section className="section">
                     <h1>글 제목을 여기에</h1>
-                    <p className="meta" style={{ color: 'var(--muted)'}}>작성일 / 버전 메모</p>
+                    <p className="meta">작성일 / 버전 메모</p>
                     <p>이 페이지는 개별 실험/프로젝트를 기록하는 템플릿입니다. 아래 가이드를 따라 내용을 채워 넣으세요.</p>
                 </section>
 
@@ -43,9 +43,9 @@ function PostTemplates() {
                     <h2>4. 동작/로그</h2>
                     <p>시리얼 로그, 측정 결과, 관찰한 현상을 정리합니다.</p>
 
-                    <section className="section">
+                    <section className="section chart-section">
                         <h1>{rtosReport.experiment}</h1>
-                        <div style={{ width: '100%', height: '300px' ,marginTop: '20px' }}>
+                        <div className="chart-container">
                             <ResponsiveContainer width="100%" height="100%">
                                 <BarChart data={rtosReport.tasks}>
                                     <XAxis dataKey="name" stroke="#95a0b8" />
