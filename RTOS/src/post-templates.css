@@ -70,28 +70,34 @@ pre {
 a:hover { text-decoration: underline; }
 
 @media (max-width: 640px) {
-    /* 1. 리포트 페이지의 전체 너비를 화면에 맞춤 */
+    /* 1. index.css의 960px 설정을 무시하고 화면 너비에 맞춤 */
     main {
         max-width: 100% !important;
+        width: 100% !important;
+        margin: 16px 0 !important;
         padding: 0 16px !important;
-        margin: 20px auto !important;
     }
 
-    /* 2. 그래프가 들어있는 섹션 여백 조절 */
+    /* 2. 내비게이션 바 정렬 (index.css 설정 덮어쓰기) */
+    nav {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 12px 16px !important;
+    }
+
+    /* 3. 섹션 박스 크기 최적화 */
     .section {
-        padding: 15px !important;
+        padding: 16px !important;
         margin-bottom: 15px !important;
+        width: 100% !important;
     }
 
-    /* 3. 리포트 제목 크기 조절 */
-    .section h1 {
-        font-size: 1.4rem !important;
-        word-break: keep-all; /* 단어 단위로 줄바꿈 */
+    /* 4. 그래프 글자가 삐져나가지 않게 강제 조절 */
+    .recharts-responsive-container {
+        min-width: 0 !important; 
     }
-
-    /* 4. 그래프 글자 크기 강제 조절 */
+    
     .recharts-text {
         font-size: 10px !important;
     }
 }
-
