@@ -1,9 +1,23 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { rtosReport } from '../reportData';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import '../post-templates.css'
 
 function PostTemplates() {
+  // 모바일 감지
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <>
@@ -47,11 +61,37 @@ function PostTemplates() {
                         <h1>{rtosReport.experiment}</h1>
                         <div className="chart-container">
                             <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={rtosReport.tasks}>
-                                    <XAxis dataKey="name" stroke="#95a0b8" />
-                                    <YAxis stroke="#95a0b8"/>
-                                    <Tooltip contentStyle={{ backgroundColor: '#111a2b', border: '1px solid #5ad1ff', color: '#e8edf7' }}/>
-                                    <Bar dataKey="usage" fill="#5ad1ff" radius={[4, 4, 0, 0]}/>
+                                <BarChart 
+                                    data={rtosReport.tasks}
+                                    margin={{ top: 10, right: 10, left: 0, bottom: 5 }}
+                                >
+                                    <XAxis 
+                                        dataKey="name" 
+                                        stroke="#95a0b8"
+                                        tick={{ fontSize: isMobile ? 11 : 12 }}
+                                        angle={isMobile ? -45 : 0}
+                                        textAnchor={isMobile ? 'end' : 'middle'}
+                                        height={isMobile ? 60 : 30}
+                                    />
+                                    <YAxis 
+                                        stroke="#95a0b8"
+                                        tick={{ fontSize: isMobile ? 11 : 12 }}
+                                        width={isMobile ? 40 : 50}
+                                    />
+                                    <Tooltip 
+                                        contentStyle={{ 
+                                            backgroundColor: '#111a2b', 
+                                            border: '1px solid #5ad1ff', 
+                                            color: '#e8edf7',
+                                            fontSize: isMobile ? '12px' : '14px',
+                                            padding: isMobile ? '8px' : '10px'
+                                        }}
+                                    />
+                                    <Bar 
+                                        dataKey="usage" 
+                                        fill="#5ad1ff" 
+                                        radius={[4, 4, 0, 0]}
+                                    />
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
